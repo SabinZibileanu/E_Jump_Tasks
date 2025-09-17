@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .square {
+      width: 150px;
+      height: 150px;
+      display: inline-block;
+      margin: 10px;
+    }
+    .circle {
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      border: 3px solid black;
+    }
+    #redCircle { background: red; }
+    #blueCircle { background: blue; }
+    #redSquare{background: red;}
+    #blueSquare{background: blue;}
+  </style>
+</head>
+<body>
+
+  <div id="redCircle" class="circle" draggable="true" ondragstart="dragstartHandler(event)"></div>
+  <div id="blueCircle" class="circle" draggable="true" ondragstart="dragstartHandler(event)"></div>
+
+  <div id = "redSquare" class="square" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+  <div id = "blueSquare" class="square" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+
+  <script>
+    const redCode = "rgb(255, 0, 0)";
+    const blueCode = "rgb(0, 0, 255)";
+
+    function dragstartHandler(ev) {
+      ev.dataTransfer.setData("circleColorId", ev.target.id);
+    }
+
+    function dragoverHandler(ev) {
+      ev.preventDefault(); 
+    }
+
+    function dropHandler(ev) {
+      ev.preventDefault();
+      const squareColor = window.getComputedStyle(ev.target).backgroundColor;
+      const draggedCircleColorId = ev.dataTransfer.getData("circleColorId");
+
+      if ((draggedCircleColorId === "blueCircle" && squareColor === blueCode) || (draggedCircleColorId === "redCircle" && squareColor === redCode))
+      {
+        ev.target.appendChild(document.getElementById(draggedCircleColorId));
+      }
+      else{
+        alert('Please drag each circle in the square that matches its color');
+      }
+      
+    }
+  </script>
+</body>
+</html>
