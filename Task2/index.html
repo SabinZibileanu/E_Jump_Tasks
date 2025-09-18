@@ -78,7 +78,7 @@
     }
         function updateSelectBox(selector, updatedValues){
             const prev = selector.value;
-            selector.innerHTML = (updatedValues.size == 1) ? "":'<option value="all">Toate</option>';
+            selector.innerHTML = (updatedValues.size === 1) ? "":'<option value="all">Toate</option>';
 
             updatedValues.forEach(val =>{
                 const opt = document.createElement("option");
