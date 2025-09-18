@@ -42,18 +42,19 @@
     <br>
     <div id = "optionsTable"></div>
     <script>
+        let optionA, optionB, optionC, aVals, bVals, cVals;
         const selectA = document.querySelector("#aValues");
         const selectB = document.querySelector("#bValues");
         const selectC = document.querySelector("#cValues");
 
         function filterTablesByOption(){
         document.getElementById('optionsTable').innerHTML = "";
-        let optionA = selectA.value;
-        let optionB = selectB.value;
-        let optionC = selectC.value;
-        let aVals = new Set();
-        let bVals = new Set();
-        let cVals = new Set();
+        optionA = selectA.value;
+        optionB = selectB.value;
+        optionC = selectC.value;
+        aVals = new Set();
+        bVals = new Set();
+        cVals = new Set();
 
         if (optionA === "all") optionA = "A";
         if (optionB === "all") optionB = "B";
@@ -78,7 +79,6 @@
         function updateSelectBox(selector, updatedValues){
             const prev = selector.value;
             selector.innerHTML = (updatedValues.size == 1) ? "":'<option value="all">Toate</option>';
-            
 
             updatedValues.forEach(val =>{
                 const opt = document.createElement("option");
